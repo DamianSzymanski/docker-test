@@ -12,8 +12,8 @@ done
 
 for i in $(seq 20); do
     echo "Running with docker number ${i}"
-    docker run --rm openjdk:8u212 \
-        curl --connect-timeout 1 -ivvv https://repo1.maven.org/maven2/org/broadinstitute/gatk/4.1.2.0/gatk-4.1.2.0.pom.md5
+    docker run --rm -v $(pwd):/data/ openjdk:8u212 \
+        apt update -qq ; apt -qq install -y strace ; strace -s 1024 curl --connect-timeout 1 -ivvv https://repo1.maven.org/maven2/org/broadinstitute/gatk/4.1.2.0/gatk-4.1.2.0.pom.md5
     echo
     echo "Sleeping 10 seconds..."
     sleep 10
