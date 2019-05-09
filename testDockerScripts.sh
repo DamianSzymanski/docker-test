@@ -2,14 +2,19 @@
 
 set -xeuo pipefail
 
-sudo tee /etc/resolv.conf <<EOF
-options timeout:5
+#sudo tee /etc/resolv.conf <<EOF
+#options timeout:5
+#options attempts:5
+#options rotate
+#nameserver 208.67.222.222 
+#nameserver 208.67.220.220
+#nameserver 1.1.1.1
+#EOF
+
+sudo tee /etc/resolvconf/resolv.conf.d/tail <<EOF
 options attempts:5
-options rotate
-nameserver 208.67.222.222 
-nameserver 208.67.220.220
-nameserver 1.1.1.1
 EOF
+sudo service resolvconf restart
 
 env
 sudo cat /etc/docker/daemon.json
