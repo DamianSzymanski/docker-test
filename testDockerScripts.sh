@@ -14,6 +14,7 @@ EOF
 env
 sudo cat /etc/docker/daemon.json
 docker run --rm -v $(pwd):/data/ openjdk:8u212 ip a
+docker run --rm -v $(pwd):/data/ openjdk:8u212 cat /etc/resolv.conf
 
 for i in $(seq 20); do
     echo "Running without docker number ${i}"
