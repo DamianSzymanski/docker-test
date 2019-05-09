@@ -3,7 +3,7 @@
 set -xeuo pipefail
 
 env
-cat /etc/docker/daemon.json
+sudo cat /etc/docker/daemon.json
 docker run --rm -v $(pwd):/data/ openjdk:8u212 ip a
 
 for i in $(seq 20); do
