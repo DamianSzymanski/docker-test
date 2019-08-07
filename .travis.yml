@@ -1,5 +1,12 @@
-dist: xenial
-services: docker
-language: minimal
-script: ./testDockerScripts.sh
+dist: bionic
+language: java
+
+install: true
+script:
+  - sudo apt-get install -y speedtest-cli
+  - for i in {1..100}; do speedtest-cli; done
+
+notifications:
+  email: false
+
 
