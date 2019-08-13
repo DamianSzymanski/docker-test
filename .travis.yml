@@ -1,6 +1,6 @@
 
 dist: bionic
-language: ruby
+language: java
 install:
   - tmux -V
   
