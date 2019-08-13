@@ -1,6 +1,8 @@
-dist: bionic
-language: ruby
 
-install: true
+dist: bionic
+language: minimal
+install:
+  - tmux -V
+  
 script:
   - ping -c4 google.com
