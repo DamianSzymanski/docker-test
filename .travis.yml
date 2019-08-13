@@ -1,6 +1,6 @@
 
 dist: bionic
-language: minimal
+language: ruby
 install:
   - tmux -V
   
