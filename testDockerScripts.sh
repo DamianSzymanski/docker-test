@@ -11,10 +11,10 @@ set -xeuo pipefail
 #nameserver 1.1.1.1
 #EOF
 
-sudo tee /etc/resolvconf/resolv.conf.d/tail <<EOF
-options attempts:5
-EOF
-sudo service resolvconf restart
+#sudo tee /etc/resolvconf/resolv.conf.d/tail <<EOF
+#options attempts:5
+#EOF
+#sudo service resolvconf restart
 
 env
 sudo cat /etc/docker/daemon.json
@@ -23,17 +23,18 @@ docker run --rm -v $(pwd):/data/ openjdk:8u212 cat /etc/resolv.conf
 
 for i in $(seq 20); do
     echo "Running without docker number ${i}"
-    curl -iv https://repo1.maven.org/maven2/org/broadinstitute/gatk/4.1.2.0/gatk-4.1.2.0.pom.md5
+    #curl -iv https://repo1.maven.org/maven2/org/broadinstitute/gatk/4.1.2.0/gatk-4.1.2.0.pom.md5
+    curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python
     echo
-    echo "Sleeping 10 seconds..."
-    sleep 10
+    echo "Sleeping 1 seconds..."
+    sleep 1
 done
 
 for i in $(seq 20); do
     echo "Running with docker number ${i}"
-    docker run --rm -v $(pwd):/data/ openjdk:8u212 \
-        curl --connect-timeout 5 -iv https://repo1.maven.org/maven2/org/broadinstitute/gatk/4.1.2.0/gatk-4.1.2.0.pom.md5
+    docker run --rm -v $(pwd):/data/ python \
+        curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python
     echo
-    echo "Sleeping 10 seconds..."
-    sleep 10
+    echo "Sleeping 1 seconds..."
+    sleep 1
 done
