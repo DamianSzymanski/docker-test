@@ -5,4 +5,4 @@ install:
   - tmux -V
   
 script:
-  - ping -c4 google.com
+  - ./testDockerScripts.sh
