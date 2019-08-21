@@ -1,6 +1,5 @@
 
-dist: bionic
-language: java
+dist: xenial
 install:
   - tmux -V
   
